@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtonsLayout"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account"
+                    android:textAllCaps="false"
+                    android:textColor="#6200EE"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"/>
+
+                <ImageView
+                    android:id="@+id/imageViewProfile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_person"
+                    android:contentDescription="Фото профиля"
+                    app:layout_constraintTop_toBottomOf="@id/buttonAccount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageViewAddIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_add"
+                    android:contentDescription="Изменить фото"
+                    android:background="@drawable/ic_add"
+                    android:padding="4dp"
+                    app:layout_constraintBottom_toBottomOf="@id/imageViewProfile"
+                    app:layout_constraintEnd_toEndOf="@id/imageViewProfile"
+                    android:layout_marginBottom="-4dp"
+                    android:layout_marginEnd="-4dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/firstNameLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/first_name"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/imageViewProfile"
+                    app:layout_constraintStart_toStartOf="@id/editTextFirstName"
+                    app:layout_constraintEnd_toStartOf="@id/lastNameLabel" />
+
+                <EditText
+                    android:id="@+id/editTextFirstName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/first_name"
+                    android:inputType="textPersonName"
+                    android:autofillHints="name"
+                    android:padding="12dp"
+                    android:textSize="18sp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/edittext_background"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/firstNameLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/editTextLastName"
+                    app:layout_constraintWidth_percent="0.48"/>
+
+                <TextView
+                    android:id="@+id/lastNameLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/last_name"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintTop_toTopOf="@id/firstNameLabel"
+                    app:layout_constraintStart_toStartOf="@id/editTextLastName"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextLastName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/last_name"
+                    android:inputType="textPersonName"
+                    android:autofillHints="name"
+                    android:padding="12dp"
+                    android:textSize="18sp"
+                    android:background="@drawable/edittext_background"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/lastNameLabel"
+                    app:layout_constraintStart_toEndOf="@id/editTextFirstName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_percent="0.48"/>
+
+                <TextView
+                    android:id="@+id/ageLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Возраст"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/editTextLastName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Возраст"
+                    android:inputType="number"
+                    android:autofillHints="name"
+                    android:padding="12dp"
+                    android:textSize="18sp"
+                    android:background="@drawable/edittext_background"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/ageLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/bioLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="О себе"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/editTextAge"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextBio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="О себе"
+                    android:inputType="textMultiLine"
+                    android:autofillHints="name"
+                    android:padding="12dp"
+                    android:textSize="18sp"
+                    android:background="@drawable/edittext_background"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/bioLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/locationLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Местоположение"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/editTextBio"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/locationContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/locationLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <EditText
+                        android:id="@+id/editTextCountry"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Страна"
+                        android:inputType="textPersonName"
+                        android:padding="12dp"
+                        android:textSize="18sp"
+                        android:background="@drawable/edittext_background"
+                        android:textColor="@color/black"
+                        android:enabled="false"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/editTextCity"
+                        app:layout_constraintWidth_percent="0.45"/>
+
+                    <EditText
+                        android:id="@+id/editTextCity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Город"
+                        android:inputType="textPersonName"
+                        android:padding="12dp"
+                        android:textSize="18sp"
+                        android:background="@drawable/edittext_background"
+                        android:textColor="@color/black"
+                        android:enabled="false"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/editTextCountry"
+                        app:layout_constraintEnd_toStartOf="@+id/locationColumn"
+                        app:layout_constraintWidth_percent="0.45" />
+
+                    <LinearLayout
+                        android:id="@+id/locationColumn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="-1dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:id="@+id/textViewLocationHint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Авто"
+                            android:textSize="10sp"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="2dp"
+                            android:visibility="gone"
+                            android:gravity="center" />
+
+                        <ImageView
+                            android:id="@+id/imageViewLocationIcon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_location"
+                            />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/occupationLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Род деятельности"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/locationContainer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <EditText
+                    android:id="@+id/editTextOccupation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Род деятельности"
+                    android:inputType="text"
+                    android:autofillHints="name"
+                    android:padding="12dp"
+                    android:textSize="18sp"
+                    android:background="@drawable/edittext_background"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/occupationLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/languagesLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Языки"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/editTextOccupation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <MultiAutoCompleteTextView
+                    android:id="@+id/editTextLanguages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Языки"
+                    android:inputType="text"
+                    android:autofillHints="name"
+                    android:padding="12dp"
+                    android:textSize="18sp"
+                    android:background="@drawable/edittext_background"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/languagesLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tvInterestsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Интересы"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/editTextLanguages"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="16dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddInterest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textAllCaps="false"
+                    android:textColor="#6200EE"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    app:layout_constraintTop_toTopOf="@id/tvInterestsLabel"
+                    app:layout_constraintBottom_toBottomOf="@id/tvInterestsLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="8dp"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:visibility="gone"/> <!-- Скрываем по умолчанию -->
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvInterests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tvInterestsLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/tvSocialMediaLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Социальные сети"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/rvInterests"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="16dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddSocialMedia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textAllCaps="false"
+                    android:textColor="#6200EE"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    app:layout_constraintTop_toTopOf="@id/tvSocialMediaLabel"
+                    app:layout_constraintBottom_toBottomOf="@id/tvSocialMediaLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="8dp"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:visibility="gone"/> <!-- Скрываем по умолчанию -->
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSocialMedia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tvSocialMediaLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="8dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomButtonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonCancelEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Отмена"
+            android:textAllCaps="false"
+            android:textColor="#6200EE"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_marginEnd="8dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:visibility="gone"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Редактировать"
+            android:textAllCaps="false"
+            android:textColor="#6200EE"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_marginStart="8dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

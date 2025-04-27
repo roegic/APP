@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Профиль"
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_person"/>
+    <item android:title="Рекомендации"
+        android:id="@+id/discoverFragment"
+        android:icon="@drawable/ic_discover"/>
+    <item android:title="Сохраненные"
+        android:id="@+id/listFragment"
+        android:icon="@drawable/ic_list"/>
+</menu>

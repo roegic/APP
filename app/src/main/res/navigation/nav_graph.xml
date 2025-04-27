@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/profileFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.bondbuddy.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_authInfoFragment"
+            app:destination="@id/authInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/discoverFragment"
+        android:name="com.example.bondbuddy.ui.discover.DiscoverFragment"
+        android:label="fragment_discover"
+        tools:layout="@layout/fragment_discover" >
+        <action
+            android:id="@+id/action_discoverFragment_to_fullProfileFragment"
+            app:destination="@id/fullProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.bondbuddy.ui.favourites.ListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_fullProfileFragment"
+            app:destination="@id/fullProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authInfoFragment"
+        android:name="com.example.bondbuddy.ui.account.AuthInfoFragment"
+        android:label="fragment_auth_info"
+        tools:layout="@layout/fragment_auth_info" >
+        <argument
+            android:name="userName"
+            app:argType="string"
+            android:defaultValue="default_name" />
+        <argument
+            android:name="userEmail"
+            app:argType="string"
+            android:defaultValue="default@email.com" />
+        <action
+            android:id="@+id/action_authInfoFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.bondbuddy.ui.account.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.bondbuddy.ui.account.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullProfileFragment"
+        android:name="com.example.bondbuddy.ui.person_card.FullProfileFragment"
+        android:label="FullProfileFragment">
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+</navigation>
