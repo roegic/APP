@@ -1,5 +1,6 @@
 package com.example.bondbuddy.data.remote
 
+import com.example.bondbuddy.data.remote.models.ChatUserInfo
 import com.example.bondbuddy.data.remote.models.Interest
 import com.example.bondbuddy.data.remote.models.LoginRequest
 import com.example.bondbuddy.data.remote.models.RegisterRequest
@@ -8,6 +9,7 @@ import com.example.bondbuddy.data.remote.models.SocialMedia
 import com.example.bondbuddy.data.remote.models.UserInfo
 import com.example.bondbuddy.utils.Constants.API_VERSION
 import com.example.bondbuddy.data.remote.models.Language
+import com.example.bondbuddy.data.remote.models.Message
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -172,6 +174,41 @@ interface BuddyApi {
         @Header("Authorization") token:String
     ): List<String>
 
+    @Headers("Content-Type: application/json")
+    @POST("$API_VERSION/chat/startChat/{otherUserId}")
+    suspend fun startChat(
+        @Header("Authorization") token: String,
+        @Path("otherUserId") otherUserId: Int
+    ): SimpleResponse
 
+    @GET("$API_VERSION/chat/getMessages/{chatId}")
+    suspend fun getMessages(
+        @Header("Authorization") token: String,
+        @Path("chatId") chatId: Int,
+        @Query("limit") limit: Int = 100,
+        @Query("offset") offset: Long = 0
+    ): List<Message>
 
+    @Headers("Content-Type: application/json")
+    @POST("$API_VERSION/chat/sendMessage/{chatId}")
+    suspend fun sendMessage(
+        @Header("Authorization") token: String,
+        @Path("chatId") chatId: Int,
+        @Body sendMessageRequest: Message
+    ): SimpleResponse
+
+    @GET("$API_VERSION/chat/getUserChats")
+    suspend fun getUserChats(
+        @Header("Authorization") token: String
+    ): List<ChatUserInfo>
+
+    @Headers("Content-Type: application/json")
+    @POST("$API_VERSION/chat/updateReadStatus/{chatId}")
+    suspend fun updateReadStatus(
+        @Header("Authorization") token: String,
+        @Path("chatId") chatId: Int,
+        @Body body: UpdateReadStatusRequest
+    ): SimpleResponse
 }
+
+data class UpdateReadStatusRequest(val isRead: Boolean)

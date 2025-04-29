@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.bondbuddy.R
@@ -54,6 +56,19 @@ class FullProfileFragment : Fragment() {
         subscribeToCurrentUserInfoEvents()
     }
 
+    private fun openChat(otherUserId: String) {
+        val action = FullProfileFragmentDirections
+            .actionFullProfileFragmentToChatFragment(
+                otherUserId = otherUserId.toInt(),
+                firstName = binding.tvFirstName.text.toString(),
+                lastName = binding.tvLastName.text.toString()
+            )
+
+        findNavController().navigate(action)
+    }
+
+
+
     override fun onStart() {
         super.onStart()
         val userId = arguments?.let { FullProfileFragmentArgs.fromBundle(it).userId }
@@ -61,6 +76,10 @@ class FullProfileFragment : Fragment() {
         userDataViewModel.getCurrentUserInfo(userId.toString())
         userDataViewModel.getCurrentUserSocials(userId.toString())
         userDataViewModel.getCurrentUserLanguages(userId.toString())
+
+        binding.buttonStartChat.setOnClickListener {
+            openChat(userId.toString())
+        }
     }
 
     private fun setupInterestsRecyclerView() {

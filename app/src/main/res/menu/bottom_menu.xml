@@ -7,7 +7,7 @@
     <item android:title="Рекомендации"
         android:id="@+id/discoverFragment"
         android:icon="@drawable/ic_discover"/>
-    <item android:title="Сохраненные"
-        android:id="@+id/listFragment"
+    <item android:title="Пользователи"
+        android:id="@+id/interactionFragment"
         android:icon="@drawable/ic_list"/>
 </menu>

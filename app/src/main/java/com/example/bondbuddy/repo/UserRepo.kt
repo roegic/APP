@@ -1,8 +1,10 @@
 package com.example.bondbuddy.repo
 
+import com.example.bondbuddy.data.remote.models.ChatUserInfo
 import com.example.bondbuddy.data.remote.models.Interest
 import com.example.bondbuddy.data.remote.models.Language
 import com.example.bondbuddy.data.remote.models.LoginRequest
+import com.example.bondbuddy.data.remote.models.Message
 import com.example.bondbuddy.data.remote.models.RegisterRequest
 import com.example.bondbuddy.data.remote.models.SimpleResponse
 import com.example.bondbuddy.data.remote.models.SocialMedia
@@ -43,5 +45,11 @@ interface UserRepo {
     suspend fun getUserLanguagesById(userId: String): Result<List<Language>>
 
     suspend fun getAllInterestsTags(): Result<List<String>>
+
+    suspend fun startChat(otherUserId: Int): Result<String>
+    suspend fun getMessages(chatId: Int, limit: Int = 100, offset: Long = 0): Result<List<Message>>
+    suspend fun sendMessage(chatId: Int, text: String): Result<String>
+    suspend fun getUserChatsWithInfo(): Result<List<ChatUserInfo>>
+    suspend fun updateReadStatus(chatId: Int, isRead: Boolean): Result<SimpleResponse>
 
 }

@@ -390,7 +390,7 @@
                     android:layout_marginStart="8dp"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="6dp"
-                    android:visibility="gone"/> <!-- Скрываем по умолчанию -->
+                    android:visibility="gone"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvSocialMedia"

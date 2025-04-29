@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/interaction_nav_graph"
+app:startDestination="@id/listFragment">
+
+<fragment
+    android:id="@+id/listFragment"
+    android:name="com.example.bondbuddy.ui.favourites.ListFragment" />
+
+<fragment
+    android:id="@+id/chatListFragment"
+    android:name="com.example.bondbuddy.ui.favourites.ChatListFragment">
+
+    <action
+        android:id="@+id/action_chatListFragment_to_chatFragment"
+        app:destination="@id/chatFragment"/>
+</fragment>
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.bondbuddy.ui.chat.ChatFragment">
+
+        <argument
+            android:name="otherUserId"
+            app:argType="integer" />
+        <argument
+            android:name="firstName"
+            app:argType="string" />
+        <argument
+            android:name="lastName"
+            app:argType="string" />
+    </fragment>
+</navigation>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -27,6 +28,9 @@ class ListFragment : Fragment() {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
+
+    private var allUsers: List<UserInfo> = emptyList()
+
 
     private val followViewModel: FollowViewModel by activityViewModels()
     private lateinit var savedUsersAdapter: SavedUsersAdapter
@@ -60,20 +64,31 @@ class ListFragment : Fragment() {
         followViewModel.getUserFollowerList()
     }
 
+    private fun updateFilteredList(query: String?) {
+        val search = query?.trim()?.lowercase().orEmpty()
+
+        val filtered = if (search.isEmpty()) {
+            allUsers
+        } else {
+            allUsers.filter {
+                "${it.firstName} ${it.lastName}".lowercase().contains(search)
+            }
+        }
+
+        savedUsersAdapter.updateList(filtered)
+        binding.tvEmptyList.visibility = if (filtered.isEmpty()) View.VISIBLE else View.GONE
+        binding.rvSavedUsers.visibility = if (filtered.isEmpty()) View.GONE else View.VISIBLE
+    }
+
+
     private fun subscribeToFollowEvents() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 followViewModel.followerListState.collectLatest { result ->
                     when (result) {
                         is Result.Success -> {
-                            savedUsersAdapter.updateList(result.data ?: emptyList())
-                            if (savedUsersAdapter.itemCount == 0) {
-                                binding.tvEmptyList.visibility = View.VISIBLE
-                                binding.rvSavedUsers.visibility = View.GONE
-                            } else {
-                                binding.tvEmptyList.visibility = View.GONE
-                                binding.rvSavedUsers.visibility = View.VISIBLE
-                            }
+                            allUsers = result.data ?: emptyList()
+                            updateFilteredList(binding.etSearch.text?.toString())
                         }
 
                         is Result.Error -> {
@@ -87,7 +102,12 @@ class ListFragment : Fragment() {
                 }
             }
         }
+
+        binding.etSearch.addTextChangedListener { text ->
+            updateFilteredList(text?.toString())
+        }
     }
+
 
     private fun unfollowUser(user: UserInfo) {
         followViewModel.unfollowUser(user.userId,
@@ -101,7 +121,7 @@ class ListFragment : Fragment() {
     }
 
     private fun openFullProfile(user: UserInfo) {
-        val action = ListFragmentDirections.actionListFragmentToFullProfileFragment(user.userId)
+        val action = InteractionFragmentDirections.actionInteractionFragmentToFullProfileFragment(user.userId)
         findNavController().navigate(action)
     }
 
@@ -109,5 +129,11 @@ class ListFragment : Fragment() {
         super.onDestroyView()
         _binding = null
         Log.d("ListFragment", "onDestroyView called")
+    }
+
+    companion object {
+        fun newInstance(): ListFragment {
+            return ListFragment()
+        }
     }
 }

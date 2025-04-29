@@ -49,7 +49,7 @@
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="@+id/cardViewPhoto"
                 app:layout_constraintStart_toEndOf="@+id/cardViewPhoto"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonStartChat"
                 android:layout_marginStart="16dp"
                 tools:text="FirstName" />
 
@@ -62,9 +62,19 @@
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/tvFirstName"
                 app:layout_constraintStart_toEndOf="@+id/cardViewPhoto"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonStartChat"
                 android:layout_marginStart="16dp"
                 tools:text="LastName" />
+
+            <Button
+                android:id="@+id/buttonStartChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Чат"
+                app:layout_constraintTop_toTopOf="@+id/tvFirstName"
+                app:layout_constraintBottom_toBottomOf="@+id/tvLastName"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:id="@+id/textViewBasicInfoLabel"
